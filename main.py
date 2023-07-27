@@ -1,4 +1,10 @@
 from fastapi import FastAPI
+from pydantic import BaseModel
+
+class Profile(BaseModel):
+    name: str
+    email: str
+    age: int
 
 app = FastAPI()
 
@@ -26,5 +32,6 @@ def province(province:str, hours:int):
 # post api
 # go to the 127.0.0.1:8000/docs
 @app.post  ('/addUser')
-def addUser():
-    return {'user data'}
+def addUser(profile:Profile):
+    return profile
+

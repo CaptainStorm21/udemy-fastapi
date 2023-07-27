@@ -24,7 +24,7 @@ def province(province:str, hours:int):
 
 # request body
 # post api
-# go to the 127.0.0.1/docs
+# go to the 127.0.0.1:8000/docs
 @app.post  ('/addUser')
 def addUser():
     return {'user data'}

@@ -2,7 +2,6 @@ from fastapi import FastAPI
 
 app = FastAPI()
 
-
 @app.get('/user/admin')
 def admin():
     return {'This is admin page'}
@@ -23,3 +22,9 @@ def profile(id:str):
 def province(province:str, hours:int):
     return {f'This is a province page for {province} and it takes to get there {hours}hours '}
 
+# request body
+# post api
+# go to the 127.0.0.1/docs
+@app.post  ('/addUser')
+def addUser():
+    return {'user data'}

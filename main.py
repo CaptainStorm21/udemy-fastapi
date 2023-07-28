@@ -4,11 +4,11 @@ from pydantic import BaseModel, Field
 class Profile(BaseModel):
     name: str = Field(title ="Name of your User", description="Please enter the name of the User")
     email: str
-    age: int
+    age: int =  Field(title ="User's age", description="Please enter age of your user", gt=0)
     
 class Product (BaseModel):
     name: str
-    price: int
+    price: int  = Field(title ="Product's price", description="Please price of your product")
     discount: int
     discounted_price: float
     

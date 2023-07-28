@@ -12,8 +12,16 @@ class Product (BaseModel):
     discount: int
     discounted_price: float
     
+class User (BaseModel):
+    name: str
+    email: str
 
 app = FastAPI()
+
+#passing multiple models
+@app.post('/purchase')
+def purchase(user:User, product:Product):
+    return{'user': user, 'product':product}
 
 # passing path and query  paramerters to request
 # go to 127.0.0.1:800/docs

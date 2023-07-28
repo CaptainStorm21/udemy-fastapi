@@ -1,8 +1,8 @@
 from fastapi import FastAPI
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 class Profile(BaseModel):
-    name: str
+    name: str = Field(title ="Name of your User", description="Please enter the name of the User")
     email: str
     age: int
     
@@ -16,10 +16,24 @@ class User (BaseModel):
     name: str
     email: str
 
-app = FastAPI()
+tags_metadata = [
+    {
+        "name": "buy",
+        "description": "Post **User** and **Item price** information",
+    },
+]
+
+app = FastAPI(
+        title="FASTAPI Management System",
+    description="API to get and create users.",
+    version="1.1.2",
+    openapi_tags=tags_metadata,
+)
+
+
 
 #passing multiple models
-@app.post('/purchase')
+@app.post('/purchase', tags=["purchase"])
 def purchase(user:User, product:Product):
     return{'user': user, 'product':product}
 

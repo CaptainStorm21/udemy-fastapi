@@ -15,11 +15,29 @@ class Product (BaseModel):
 
 app = FastAPI()
 
-@app.post('/addProduct')
-def addProduct(product:Product):
+# passing path and query  paramerters to request
+# go to 127.0.0.1:800/docs
+# response body will product the number product_id
+# you should see  product and category as requered in  docs
+	
+# Response body
+# Download
+# {
+#   "product_id": 324,
+#   "product": {
+#     "name": "string",
+#     "price": 0,
+#     "discount": 0,
+#     "discounted_price": 0
+#   },
+#   "category": "phone"
+# }
+
+@app.post('/addProduct/{product_id}')
+def addProduct(product:Product, product_id:int, category:str):
     product.discounted_price = product.price-\
     (product.price * product.discount)/100
-    return product
+    return {"product_id":product_id, "product":product, "category":category }
 
 @app.get('/user/admin')
 def admin():
